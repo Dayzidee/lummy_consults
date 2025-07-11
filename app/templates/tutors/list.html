@@ -1,0 +1,127 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Find Your Perfect Tutor</h1>
+        <p>Connect with qualified tutors for personalized learning experiences</p>
+    </div>
+</section>
+
+<section class="tutors-section">
+    <div class="container">
+        <div class="search-filters">
+            <h3>Filter Tutors</h3>
+            <form method="GET" class="filter-form">
+                <div class="filter-row">
+                    <select name="subject">
+                        <option value="">All Subjects</option>
+                        <option value="Mathematics">Mathematics</option>
+                        <option value="Physics">Physics</option>
+                        <option value="Chemistry">Chemistry</option>
+                        <option value="English">English</option>
+                        <option value="Biology">Biology</option>
+                        <option value="French">French</option>
+                        <option value="Music">Music</option>
+                        <option value="Statistics">Statistics</option>
+                    </select>
+                    
+                    <select name="level">
+                        <option value="">All Levels</option>
+                        <option value="Primary">Primary School</option>
+                        <option value="Secondary">Secondary School</option>
+                        <option value="University">University</option>
+                    </select>
+                    
+                    <select name="location">
+                        <option value="">All Locations</option>
+                        <option value="Lagos">Lagos</option>
+                        <option value="Abuja">Abuja</option>
+                        <option value="Port Harcourt">Port Harcourt</option>
+                        <option value="Online">Online Only</option>
+                    </select>
+                    
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="tutors-grid">
+            {% if tutors %}
+                {% for tutor in tutors %}
+                <div class="tutor-card">
+                    <div class="tutor-avatar">
+                        {% if tutor.profile_picture %}
+                            <img src="{{ url_for('static', filename='uploads/' + tutor.profile_picture) }}" alt="{{ tutor.user.first_name }}">
+                        {% else %}
+                            <div class="avatar-placeholder">{{ tutor.user.first_name[0] }}{{ tutor.user.last_name[0] }}</div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="tutor-info">
+                        <h3>{{ tutor.user.first_name }} {{ tutor.user.last_name }}</h3>
+                        <p class="qualification">{{ tutor.qualification or 'Qualified Tutor' }}</p>
+                        
+                        <div class="tutor-meta">
+                            <span class="experience">{{ tutor.experience_years }} years experience</span>
+                            <span class="rating">
+                                ⭐ {{ "%.1f"|format(tutor.rating) }} ({{ tutor.total_reviews }} reviews)
+                            </span>
+                        </div>
+                        
+                        <div class="subjects">
+                            <strong>Subjects:</strong>
+                            {% if tutor.subjects %}
+                                {% set subjects_list = tutor.subjects|from_json %}
+                                {% for subject in subjects_list[:3] %}
+                                    <span class="subject-tag">{{ subject }}</span>
+                                {% endfor %}
+                                {% if subjects_list|length > 3 %}
+                                    <span class="more-subjects">+{{ subjects_list|length - 3 }} more</span>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                        
+                        <div class="tutor-options">
+                            {% if tutor.online_teaching %}
+                                <span class="option-tag online">Online</span>
+                            {% endif %}
+                            {% if tutor.in_person_teaching %}
+                                <span class="option-tag in-person">In-Person</span>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="pricing">
+                            <strong>₦{{ "{:,.0f}"|format(tutor.hourly_rate) }}/hour</strong>
+                        </div>
+                        
+                        <div class="tutor-actions">
+                            <a href="{{ url_for('tutors.tutor_detail', id=tutor.id) }}" class="btn btn-outline">View Profile</a>
+                            <a href="#" class="btn btn-primary">Book Session</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="no-tutors">
+                    <h3>No tutors found</h3>
+                    <p>Try adjusting your search filters or <a href="{{ url_for('auth.register') }}">register as a tutor</a> to join our platform.</p>
+                </div>
+            {% endif %}
+        </div>
+        
+        <!-- Pagination would go here -->
+        <div class="pagination">
+            <!-- Pagination controls will be added when implementing backend logic -->
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="container">
+        <h2>Want to Become a Tutor?</h2>
+        <p>Join our platform and start teaching students in your area of expertise</p>
+        <a href="{{ url_for('auth.register') }}" class="btn btn-primary">Register as Tutor</a>
+    </div>
+</section>
+{% endblock %}

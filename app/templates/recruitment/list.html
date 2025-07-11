@@ -1,0 +1,140 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Job Opportunities</h1>
+        <p>Find your dream job or hire the best talent through Lummy Recruitment</p>
+    </div>
+</section>
+
+<section class="jobs-section">
+    <div class="container">
+        <div class="job-controls">
+            <div class="search-filters">
+                <h3>Filter Jobs</h3>
+                <form method="GET" class="filter-form">
+                    <div class="filter-row">
+                        <input type="text" name="keyword" placeholder="Job title, company, or keyword" value="{{ request.args.get('keyword', '') }}">
+                        
+                        <select name="location">
+                            <option value="">All Locations</option>
+                            <option value="Lagos" {{ 'selected' if request.args.get('location') == 'Lagos' }}>Lagos</option>
+                            <option value="Abuja" {{ 'selected' if request.args.get('location') == 'Abuja' }}>Abuja</option>
+                            <option value="Port Harcourt" {{ 'selected' if request.args.get('location') == 'Port Harcourt' }}>Port Harcourt</option>
+                            <option value="Remote" {{ 'selected' if request.args.get('location') == 'Remote' }}>Remote</option>
+                        </select>
+                        
+                        <select name="job_type">
+                            <option value="">All Types</option>
+                            <option value="full-time" {{ 'selected' if request.args.get('job_type') == 'full-time' }}>Full-time</option>
+                            <option value="part-time" {{ 'selected' if request.args.get('job_type') == 'part-time' }}>Part-time</option>
+                            <option value="contract" {{ 'selected' if request.args.get('job_type') == 'contract' }}>Contract</option>
+                            <option value="internship" {{ 'selected' if request.args.get('job_type') == 'internship' }}>Internship</option>
+                        </select>
+                        
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="post-job">
+                <a href="#" class="btn btn-secondary">Post a Job</a>
+            </div>
+        </div>
+
+        <div class="jobs-list">
+            {% if jobs %}
+                {% for job in jobs %}
+                <div class="job-card">
+                    <div class="job-header">
+                        <div class="job-title-company">
+                            <h3 class="job-title">
+                                <a href="{{ url_for('recruitment.job_detail', id=job.id) }}">{{ job.title }}</a>
+                            </h3>
+                            <p class="company-name">{{ job.company_name }}</p>
+                        </div>
+                        
+                        <div class="job-meta">
+                            <span class="job-type {{ job.job_type }}">{{ job.job_type|title }}</span>
+                            <span class="job-location">📍 {{ job.location }}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="job-description">
+                        <p>{{ job.description[:200] }}{% if job.description|length > 200 %}...{% endif %}</p>
+                    </div>
+                    
+                    <div class="job-details">
+                        {% if job.salary_range %}
+                        <span class="salary">💰 {{ job.salary_range }}</span>
+                        {% endif %}
+                        
+                        {% if job.application_deadline %}
+                        <span class="deadline">📅 Apply by {{ job.application_deadline.strftime('%B %d, %Y') }}</span>
+                        {% endif %}
+                        
+                        <span class="positions">👥 {{ job.positions_available }} position{{ 's' if job.positions_available != 1 else '' }}</span>
+                    </div>
+                    
+                    <div class="job-footer">
+                        <div class="posted-date">
+                            <small>Posted {{ moment(job.created_at).fromNow() if moment else job.created_at.strftime('%B %d, %Y') }}</small>
+                        </div>
+                        
+                        <div class="job-actions">
+                            <a href="{{ url_for('recruitment.job_detail', id=job.id) }}" class="btn btn-outline">View Details</a>
+                            <a href="#" class="btn btn-primary">Apply Now</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="no-jobs">
+                    <h3>No jobs found</h3>
+                    <p>Try adjusting your search criteria or check back later for new opportunities.</p>
+                    <div class="no-jobs-actions">
+                        <a href="{{ url_for('recruitment.job_list') }}" class="btn btn-outline">View All Jobs</a>
+                        <a href="#" class="btn btn-primary">Post a Job</a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        
+        <!-- Pagination -->
+        <div class="pagination">
+            <!-- Pagination controls will be added when implementing backend logic -->
+        </div>
+    </div>
+</section>
+
+<section class="employer-cta">
+    <div class="container">
+        <div class="cta-content">
+            <div class="cta-text">
+                <h2>Looking to Hire?</h2>
+                <p>Connect with top talent through our recruitment services. Post jobs and find the perfect candidates for your organization.</p>
+            </div>
+            <div class="cta-actions">
+                <a href="#" class="btn btn-primary">Post a Job</a>
+                <a href="#" class="btn btn-outline">Contact Recruitment Team</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="job-seeker-cta">
+    <div class="container">
+        <div class="cta-content">
+            <div class="cta-text">
+                <h2>Job Seekers</h2>
+                <p>Create your profile and get matched with relevant job opportunities. Let employers find you!</p>
+            </div>
+            <div class="cta-actions">
+                <a href="{{ url_for('auth.register') }}" class="btn btn-primary">Create Profile</a>
+                <a href="#" class="btn btn-outline">Upload CV</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

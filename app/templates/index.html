@@ -1,0 +1,148 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<section id="hero" class="hero-section">
+    <div class="hero-content">
+        <h1 class="hero-title">Welcome to Lummy Consults</h1>
+        <p class="hero-subtitle">Your Gateway to Quality Education, Career Opportunities, and Learning Resources</p>
+        <div class="hero-buttons">
+            <a href="{{ url_for('tutors.tutor_list') }}" class="btn btn-primary">Find a Tutor</a>
+            <a href="{{ url_for('recruitment.job_list') }}" class="btn btn-secondary">Browse Jobs</a>
+        </div>
+    </div>
+    <div class="hero-image">
+        <img src="{{ url_for('static', filename='images/lummy.jpg') }}" alt="Lummy Consults">
+    </div>
+</section>
+
+<section id="services" class="services-section">
+    <div class="container">
+        <h2 class="section-title">Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🎓</div>
+                <h3>Tutoring Services</h3>
+                <p>Connect with qualified tutors for personalized learning experiences across all subjects and levels.</p>
+                <a href="{{ url_for('tutors.tutor_list') }}" class="btn btn-outline">Learn More</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💼</div>
+                <h3>Recruitment Services</h3>
+                <p>Find your dream job or hire the best talent with our comprehensive recruitment platform.</p>
+                <a href="{{ url_for('recruitment.job_list') }}" class="btn btn-outline">Explore Jobs</a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📚</div>
+                <h3>Educational Library</h3>
+                <p>Access a vast collection of educational materials, books, and resources for all learning levels.</p>
+                <a href="{{ url_for('library.library_list') }}" class="btn btn-outline">Browse Library</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="about-section">
+    <div class="container">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>About Lummy Consults</h2>
+                <p>At Lummy Consults, we are dedicated to bridging the gap between education and career success. Our mission is to connect students with expert tutors, provide quality exam preparation, and help professionals find the right career opportunities.</p>
+                <p>Located in Lagos, Nigeria, we serve students, professionals, and organizations across all sectors with our comprehensive suite of services.</p>
+                <div class="about-stats">
+                    <div class="stat">
+                        <h3>500+</h3>
+                        <p>Students Tutored</p>
+                    </div>
+                    <div class="stat">
+                        <h3>50+</h3>
+                        <p>Qualified Tutors</p>
+                    </div>
+                    <div class="stat">
+                        <h3>200+</h3>
+                        <p>Jobs Placed</p>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="{{ url_for('static', filename='images/473132043_122189270984126935_8790980487989994326_n.jpg') }}" alt="About Lummy Consults">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="testimonials" class="testimonials-section">
+    <div class="container">
+        <h2 class="section-title">What Our Clients Say</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p>"Lummy Consults helped me find the perfect tutor for my JAMB preparation. I scored 280 and got into my dream university!"</p>
+                </div>
+                <div class="testimonial-author">
+                    <h4>Adebayo Johnson</h4>
+                    <span>Student</span>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p>"Their recruitment services are exceptional. I found my current job through their platform and couldn't be happier!"</p>
+                </div>
+                <div class="testimonial-author">
+                    <h4>Sarah Okafor</h4>
+                    <span>Software Developer</span>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p>"The educational library has been invaluable for my teaching career. High-quality resources at affordable prices."</p>
+                </div>
+                <div class="testimonial-author">
+                    <h4>Dr. Michael Adeyemi</h4>
+                    <span>Educator</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="contact-section">
+    <div class="container">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-content">
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                <div class="contact-item">
+                    <strong>Address:</strong> Lagos, Nigeria
+                </div>
+                <div class="contact-item">
+                    <strong>Phone:</strong> +234-xxx-xxx-xxxx
+                </div>
+                <div class="contact-item">
+                    <strong>Email:</strong> info@lummyconsults.com
+                </div>
+                <div class="social-links">
+                    <a href="https://facebook.com/lummytutors" target="_blank">Facebook</a>
+                    <a href="https://instagram.com/lummy_tutors" target="_blank">Instagram</a>
+                    <a href="https://google.com/lummytutors" target="_blank">Google</a>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3>Send Us a Message</h3>
+                <form>
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+

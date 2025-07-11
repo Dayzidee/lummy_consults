@@ -1,0 +1,117 @@
+PROJECT NAME: Lummy Consults Multi-Service Platform
+
+FRAMEWORKS & STACK:
+- Backend: Flask (Python)
+- Frontend: HTML, CSS, JavaScript
+- Structure: Scalable, modular, production-ready Flask app (use Blueprints, clear folder structure)
+- Objective: Build 85% of this platform programmatically, with clean, adaptable code that reflects exact client requirements
+
+==============================
+🧩 MODULES TO IMPLEMENT
+==============================
+
+1. ✅ TUTORING SERVICES (Lummy Tutors)
+- Users can book tutors for one-on-one sessions (online and physical)
+- Tutors cover ALL subjects including:
+  - French, Music, Statistics, Math, English, Sciences, etc.
+- Users can search and filter tutors based on subject, level, and location
+- Training support for:
+  - WAEC, NECO, JAMB, IGCSE, TOEFL, UTME, common entrance exams, internal and external exams
+- Target age groups:
+  - Toddlers, Primary school, Secondary school, Young adults
+- Platform should allow:
+  - Student to book a tutor
+  - Tutor to register and offer services
+  - Online and physical sessions option
+  - Integration-ready for Jitsi Meet or Zoom (video class capable)
+  - Online student portal for:
+    - Class schedule
+    - Progress tracking
+    - Tutor-student messaging
+    - Course materials (if any)
+
+2. ✅ RECRUITMENT SERVICES (Lummy Recruitment Firm)
+- Connect job seekers to employers
+- Allow employers to:
+  - Post job openings
+  - Contact the admin for staffing
+- Allow applicants to:
+  - Register
+  - Submit CV or details
+  - Apply for listed jobs
+- Admin dashboard should handle:
+  - Matching workers to jobs
+  - Marking positions as filled
+  - Running in-service development programs
+- Recruitment is done across general job sectors and outsourced for companies needing staff
+
+3. ✅ EDUCATIONAL LIBRARY (Under Lummy Consults)
+- Upload educational documents (PDF, DOC, etc.) for sale
+- Admin uploads files, sets price
+- Users can browse materials, preview, and pay to download
+- Setup placeholder for payment gateway (e.g. Paystack or Flutterwave)
+
+==============================
+🌍 GENERAL INFORMATION
+==============================
+- Lummy Tutors, Lummy Recruitment Firm, and the Library are all under the umbrella brand **Lummy Consults**
+- Their mission: To connect tutors to students, provide quality exam training, and outsource qualified staff to employers
+- All business branches should be reflected on the website
+- Use suitable colors (can be selected by developer)
+- Pictures and location details can be pulled from Lummy’s Google platform
+- This link should get you some information: https://www.google.com/maps/place/Lummy+Consults/@6.5741786,3.4011417,17z/data=!3m1!4b1!4m6!3m5!1s0x103b93a27a21447d:0xa863cba77156f9a5!8m2!3d6.5741786!4d3.4011417!16s%2Fg%2F11s7d488_f?entry=ttu&g_ep=EgoyMDI1MDcwNi4wIKXMDSoASAFQAw%3D%3D
+- Facebook at @lummy Tutors
+
+Lives in Lagos, Nigeria
+
+Lummy_Tutors for instagram
+
+Google.com/lummytutors. for more info
+
+
+==============================
+🎯 CORE FEATURES
+==============================
+
+- Homepage with links to all 3 services
+- About page describing all offerings in detail
+- Contact form with email or WhatsApp integration
+- Authentication system (students, tutors, job seekers, admin)
+- Admin dashboard to manage:
+  - Tutor registrations
+  - Job listings and applications
+  - Library content
+- Student portal for online tutoring
+- Modular code using Flask Blueprints
+- Jinja templating for reusable layouts
+- Responsive UI (mobile-first)
+- Placeholder dummy data where needed
+- Clear comments in code and instructions on extending the platform
+
+==============================
+🛠 OUTPUT INSTRUCTIONS
+==============================
+
+- Build a working MVP reflecting all features above
+- Structure the project into `/tutors`, `/recruitment`, `/library`, and `/main` Blueprints
+- Use Jinja templates under `/templates/`
+- Static files (CSS, JS, Images) under `/static/`
+- Each module should have its own routes, templates, and models
+- Use SQLite or basic file-based DB for sample data (can be upgraded)
+- Seed some sample tutors, students, jobs, and educational materials
+- Ensure code is readable, maintainable, and documented
+
+==============================
+📂 FINAL OUTPUT
+==============================
+- Deliver a Flask-based folder structure with:
+  - `app/`
+  - `app/tutors/`
+  - `app/recruitment/`
+  - `app/library/`
+  - `app/main/`
+  - `static/`, `templates/`, `config.py`, `run.py`
+- Include `README.md` explaining:
+  - Project setup
+  - How to run the server
+  - How to add tutors, jobs, materials
