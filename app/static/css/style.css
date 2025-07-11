@@ -1,11 +1,316 @@
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    background-color: #f9f9f9;
-    color: #333;
-    scroll-behavior: smooth;
+/* Global Styles & Typography */
+:root {
+    --font-family-cursive: 'Dancing Script', cursive;
+    --font-family-sans-serif: 'Open Sans', sans-serif;
+    --font-family-accent: 'Poppins', sans-serif;
+
+    --color-primary: #5DADE2; /* Calming Blue */
+    --color-secondary: #77DD77; /* Soft Green */
+    --color-accent: #B19CD9; /* Gentle Lavender */
+
+    --color-text: #4A4A4A; /* Dark Slate Gray */
+    --color-text-light: #FFFFFF;
+
+    --color-background-body: #F8F9FA; /* Off-white */
+    --color-background-section: #FFFFFF; /* White */
+    --color-background-light-gray: #E9ECEF; /* Light Gray for subtle separation */
+
+    --color-primary-rgb: 93, 173, 226; /* For use in rgba() */
+    --color-secondary-rgb: 119, 221, 119; /* For use in rgba() */
+    --color-accent-rgb: 177, 156, 217; /* For use in rgba() */
+
+    --box-shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --box-shadow-medium: 0 6px 20px rgba(0, 0, 0, 0.1);
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
 }
 
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px; /* Base font size */
+}
+
+body {
+    font-family: var(--font-family-sans-serif);
+    line-height: 1.6;
+    background-color: var(--color-background-body);
+    color: var(--color-text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-accent);
+    font-weight: 600; /* Poppins bold */
+    color: var(--color-text); /* Or a slightly darker shade if needed */
+    margin-bottom: 0.75em;
+    line-height: 1.3;
+}
+
+/* Apply cursive font to main page titles/headers, can be more specific later */
+h1.page-title, .hero-title { /* Example, can be refined */
+    font-family: var(--font-family-cursive);
+    font-weight: 700; /* Dancing Script bold */
+    color: var(--color-primary); /* Example: use primary color for main titles */
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-secondary); /* Example hover color */
+    text-decoration: underline;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Responsive typography: reduce base font size on smaller screens */
+@media (max-width: 768px) {
+    html {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+/* Container for consistent spacing */
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Site Header and Navigation */
+.site-header {
+    background-color: var(--color-background-section);
+    padding: 1rem 0;
+    box-shadow: var(--box-shadow-soft);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-family: var(--font-family-cursive);
+    font-size: 1.8rem; /* Larger, cursive logo */
+    font-weight: 700;
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.nav-logo:hover {
+    color: var(--color-secondary);
+    text-decoration: none;
+}
+
+.main-navigation {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin-left: 1.5rem; /* Spacing between links */
+}
+
+.nav-links a {
+    font-family: var(--font-family-accent); /* Poppins for nav links */
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--color-text);
+    text-decoration: none;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--color-secondary);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.nav-links a.active {
+    /* Subtle glow for active link */
+    text-shadow: 0 0 8px rgba(var(--color-primary-rgb), 0.5);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+.nav-login {
+    padding: 0.5rem 1rem;
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    border-radius: var(--border-radius-sm);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-login:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-text-light); /* Keep text light or adjust as needed */
+    text-decoration: none;
+}
+.nav-login:hover::after {
+    width: 0; /* No underline for button-like login link */
+}
+
+
+.nav-toggle {
+    display: none; /* Hidden on desktop */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.hamburger {
+    display: block;
+    position: relative;
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-text);
+    transition: background-color 0s 0.25s; /* Delay hiding the middle bar */
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-text);
+    transition: transform 0.25s ease-in-out, top 0.25s ease-in-out 0.25s, bottom 0.25s ease-in-out 0.25s;
+}
+
+.hamburger::before {
+    top: -8px;
+}
+
+.hamburger::after {
+    bottom: -8px;
+}
+
+/* Mobile Navigation Styles */
+@media (max-width: 768px) {
+    .nav-links {
+        position: absolute;
+        top: 100%; /* Position below the header */
+        left: 0;
+        width: 100%;
+        background-color: var(--color-background-section);
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 0;
+        box-shadow: var(--box-shadow-soft);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+    }
+
+    .nav-links.open {
+        max-height: 500px; /* Adjust as needed */
+        padding: 1rem 0;
+    }
+
+    .nav-links li {
+        margin: 0.75rem 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links a {
+        display: block; /* Make links take full width for easier tapping */
+        padding: 0.75rem 1rem;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+        width: 30%; /* Underline effect for mobile, centered */
+        left: 35%;
+    }
+
+    .nav-login {
+        display: inline-block; /* Make it behave like a button */
+        margin-top: 0.5rem;
+    }
+
+    .nav-toggle {
+        display: block; /* Show hamburger on mobile */
+    }
+
+    /* Hamburger animation */
+    .main-navigation.open .hamburger {
+        background-color: transparent; /* Middle bar disappears */
+    }
+
+    .main-navigation.open .hamburger::before {
+        transform: rotate(45deg);
+        top: 0;
+        transition: top 0.25s ease-in-out, transform 0.25s ease-in-out 0.25s;
+    }
+
+    .main-navigation.open .hamburger::after {
+        transform: rotate(-45deg);
+        bottom: 0;
+        transition: bottom 0.25s ease-in-out, transform 0.25s ease-in-out 0.25s;
+    }
+}
+
+
+/* Old header and nav styles to be removed or replaced */
+/*
 header {
     background-color: #4CAF50;
     padding: 10px 0;
@@ -35,46 +340,89 @@ nav ul li a {
 nav ul li a:hover {
     color: #ffeb3b;
 }
+*/
 
+/* General Button Styles */
 .btn {
-    padding: 10px 20px;
+    display: inline-block; /* Ensures proper padding and margin */
+    font-family: var(--font-family-accent);
+    font-weight: 600;
+    padding: 0.65rem 1.3rem; /* Slightly smaller than hero buttons */
     border: none;
-    border-radius: 5px;
+    border-radius: var(--border-radius-md); /* Consistent rounded corners */
     cursor: pointer;
     text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: background-color 0.2s ease-out, color 0.2s ease-out, transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.btn:hover {
+    text-decoration: none; /* Remove underline from general links on buttons */
+    transform: translateY(-2px);
+    box-shadow: var(--box-shadow-soft);
 }
 
 .btn-primary {
-    background-color: #6200EA;
-    color: white;
-    transition: background-color 0.3s;
+    background-image: linear-gradient(to right, var(--color-primary) 0%, var(--color-accent) 100%);
+    /* background-color: var(--color-primary); */ /* Fallback if gradient not supported, though widely supported now */
+    color: var(--color-text-light);
+    background-size: 200% auto; /* For hover transition if we change gradient position */
+    transition: background-color 0.2s ease-out, color 0.2s ease-out, transform 0.2s ease-out, box-shadow 0.2s ease-out, background-position 0.4s ease-out;
 }
 
 .btn-primary:hover {
-    background-color: #3700B3;
+    /* background-color: var(--color-secondary); */
+    background-image: linear-gradient(to right, var(--color-secondary) 0%, var(--color-primary) 100%);
+    background-position: right center; /* Change gradient direction/position on hover */
+    color: var(--color-text-light);
+    box-shadow: var(--box-shadow-medium), 0 0 15px rgba(var(--color-primary-rgb, 93, 173, 226), 0.5); /* Added subtle glow */
 }
 
 .btn-secondary {
-    background-color: #03DAC5;
-    color: black;
-    transition: background-color 0.3s;
+    /* background-color: var(--color-accent); */
+    background-image: linear-gradient(to right, var(--color-accent) 0%, var(--color-secondary) 100%);
+    color: var(--color-text-light);
+    background-size: 200% auto;
+    transition: background-color 0.2s ease-out, color 0.2s ease-out, transform 0.2s ease-out, box-shadow 0.2s ease-out, background-position 0.4s ease-out;
 }
 
 .btn-secondary:hover {
-    background-color: #018786;
+    /* background-color: var(--color-primary); */
+    background-image: linear-gradient(to right, var(--color-primary) 0%, var(--color-accent) 100%);
+    background-position: right center;
+    color: var(--color-text-light);
+    box-shadow: var(--box-shadow-medium), 0 0 15px rgba(var(--color-accent-rgb, 177, 156, 217), 0.5); /* Added subtle glow */
 }
 
+/* Need to define --color-primary-rgb and --color-accent-rgb in :root if not already there for the glow */
+/* For now, I'll use placeholder RGB values in the glow. Will add to :root later if this approach is kept. */
+
 .btn-outline {
-    border: 2px solid #6200EA;
-    background: none;
-    color: #6200EA;
-    transition: background-color 0.3s, color 0.3s;
+    border: 2px solid var(--color-primary);
+    background-color: transparent;
+    color: var(--color-primary);
 }
 
 .btn-outline:hover {
-    background-color: #6200EA;
-    color: white;
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    box-shadow: var(--box-shadow-medium);
 }
+
+
+/* Ensure these specific button styles are still relevant or update them */
+/* Example: the contact form button might use .btn-primary */
+.contact-form .btn-primary {
+    background-color: var(--color-secondary); /* Make contact form button stand out, e.g. green */
+    color: var(--color-text);
+}
+.contact-form .btn-primary:hover {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+}
+
 
 .hero-section {
     display: flex;
@@ -82,24 +430,117 @@ nav ul li a:hover {
     align-items: center;
     background: linear-gradient(to right, #8e2de2, #4a00e0);
     height: 400px;
-    color: white;
+    /* background: linear-gradient(to right, #8e2de2, #4a00e0); */ /* Old gradient */
+    /* New Hero Section Styles */
+    padding: 6rem 0; /* More padding */
+    text-align: center;
+    color: var(--color-text-light); /* Light text on dark/gradient background */
+    /* A modern, subtle gradient using our theme colors - can be adjusted */
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    /* Optional: Add a subtle pattern or overlay later if a plain gradient is too simple */
+    /* background-image: url('path/to/relevant/family-friendly-hero-image.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative; */
 }
 
-.hero-title {
-    font-size: 3em;
-    margin: 0;
+/* Uncomment and adjust above if a background image is used */
+/* .hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4); /* Dark overlay for text readability */
+    z-index: 1;
+} */
+
+.hero-container {
+    position: relative; /* For z-index if overlay is used */
+    z-index: 2;
+    max-width: 800px; /* Constrain content width for better readability */
 }
 
-.hero-subtitle {
-    font-size: 1.5em;
+.hero-section .hero-title, /* Targets h1.hero-title specifically within .hero-section */
+.main-hero-title { /* General class for main hero titles if used elsewhere */
+    font-family: var(--font-family-cursive);
+    font-size: 3.5rem; /* Larger and more impactful */
+    font-weight: 700; /* Dancing Script bold */
+    color: var(--color-text-light); /* Ensure high contrast on gradient */
+    margin-bottom: 0.5em;
+    line-height: 1.2;
+}
+
+.hero-section .hero-subtitle {
+    font-family: var(--font-family-accent); /* Poppins for subtitle */
+    font-size: 1.25rem;
+    color: var(--color-text-light);
+    margin-bottom: 1.5em;
+    opacity: 0.9; /* Slightly less emphasis than title */
 }
 
 .hero-buttons .btn {
-    margin: 10px;
+    font-family: var(--font-family-accent);
+    font-weight: 600;
+    padding: 0.8rem 1.8rem;
+    border-radius: var(--border-radius-md);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0.5rem;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+    border: none;
 }
 
+.hero-buttons .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--box-shadow-medium);
+    text-decoration: none;
+}
+
+.btn-hero-primary {
+    background-color: var(--color-secondary); /* Soft Green for primary CTA */
+    color: var(--color-text); /* Darker text on light green for contrast */
+}
+.btn-hero-primary:hover {
+    background-color: var(--color-text); /* Darker on hover */
+    color: var(--color-secondary); /* Green text */
+}
+
+.btn-hero-secondary {
+    background-color: transparent;
+    color: var(--color-text-light);
+    border: 2px solid var(--color-text-light); /* White border */
+}
+.btn-hero-secondary:hover {
+    background-color: var(--color-text-light); /* White background on hover */
+    color: var(--color-primary); /* Blue text */
+}
+
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 4rem 0;
+    }
+    .hero-section .hero-title,
+    .main-hero-title {
+        font-size: 2.8rem;
+    }
+    .hero-section .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    .hero-buttons .btn {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Ensure the old .hero-section specific styles are fully overridden or removed */
+/* Any remaining old .hero-title, .hero-subtitle, .hero-buttons styles should be removed if they conflict */
+
+
 .services-section {
-    background-color: #fffcf9;
+    background-color: var(--color-background-section); /* Use CSS variable */
     padding: 60px 10%;
 }
 
@@ -119,14 +560,16 @@ nav ul li a:hover {
 .service-card {
     background-color: white;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: var(--border-radius-lg); /* Use theme variable */
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
+    box-shadow: var(--box-shadow-soft); /* Use theme variable */
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out; /* Smoother transition, add shadow */
+    background-color: var(--color-background-section); /* Ensure it uses theme bg */
 }
 
 .service-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-8px); /* Slightly less lift, but can be adjusted */
+    box-shadow: var(--box-shadow-medium); /* More pronounced shadow on hover */
 }
 
 .service-icon {
@@ -174,11 +617,19 @@ nav ul li a:hover {
 .about-image {
     flex: 1;
     text-align: center;
+    padding: 1rem; /* Add some padding around the image container */
 }
 
 .about-image img {
-    max-width: 100%;
-    border-radius: 10px;
+    /* max-width: 100%; is handled by global img style */
+    /* height: auto; is handled by global img style */
+    border-radius: var(--border-radius-lg); /* Use CSS variable for larger radius */
+    box-shadow: var(--box-shadow-medium); /* Add a more pronounced shadow */
+    object-fit: cover; /* Ensures the image covers the area without distortion, if dimensions were fixed */
+    /* If we want to constrain height for consistency:
+    max-height: 400px;
+    width: auto; /* Adjust width accordingly if height is constrained */
+    /* Or for a fixed aspect ratio, container queries would be more advanced */
 }
 
 .testimonials-section {

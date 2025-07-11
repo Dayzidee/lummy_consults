@@ -2,7 +2,7 @@ from flask import render_template, request
 from app.tutors import bp
 from app.models import TutorProfile, User
 from app import db
-import json
+# import json # No longer needed here if only used for the filter
 
 @bp.route('/tutors')
 def tutor_list():
@@ -24,14 +24,8 @@ def tutor_list():
     
     tutors = query.all()
     
-    # Add JSON parsing filter to Jinja
-    @bp.app_template_filter('from_json')
-    def from_json_filter(value):
-        try:
-            return json.loads(value) if value else []
-        except:
-            return []
-    
+    # The filter is now globally available for this blueprint's templates
+    # and defined in app/tutors/__init__.py
     return render_template('tutors/list.html', tutors=tutors)
 
 @bp.route('/tutor/<int:id>')
