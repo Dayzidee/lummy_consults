@@ -170,17 +170,31 @@ function initInteractiveElements() {
         });
     });
     
-    // Add hover effects to service cards
-    const serviceCards = document.querySelectorAll('.service-card');
-    serviceCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-10px) scale(1.02)';
-        });
+    // Add hover effects to service cards - REMOVED to rely on CSS transitions for .service-card:hover
+    // const serviceCards = document.querySelectorAll('.service-card');
+    // serviceCards.forEach(card => {
+    //     card.addEventListener('mouseenter', function() {
+    //         // this.style.transform = 'translateY(-10px) scale(1.02)'; // Now handled by CSS
+    //     });
         
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
+    //     card.addEventListener('mouseleave', function() {
+    //         // this.style.transform = 'translateY(0) scale(1)'; // Now handled by CSS
+    //     });
+    // });
+
+    // Mobile navigation toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const mainNav = document.querySelector('.main-navigation'); // Target .main-navigation for .open class
+    const navLinks = document.querySelector('.nav-links'); // Also target .nav-links for its .open class
+
+    if (navToggle && mainNav && navLinks) {
+        navToggle.addEventListener('click', function() {
+            mainNav.classList.toggle('open'); // For hamburger animation
+            navLinks.classList.toggle('open'); // For showing/hiding links
+            const isExpanded = mainNav.classList.contains('open');
+            navToggle.setAttribute('aria-expanded', isExpanded);
         });
-    });
+    }
     
     // Add loading animation for buttons
     const buttons = document.querySelectorAll('.btn');

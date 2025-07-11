@@ -2,16 +2,16 @@
 
 {% block content %}
 <section id="hero" class="hero-section">
-    <div class="hero-content">
-        <h1 class="hero-title">Welcome to Lummy Consults</h1>
-        <p class="hero-subtitle">Your Gateway to Quality Education, Career Opportunities, and Learning Resources</p>
-        <div class="hero-buttons">
-            <a href="{{ url_for('tutors.tutor_list') }}" class="btn btn-primary">Find a Tutor</a>
-            <a href="{{ url_for('recruitment.job_list') }}" class="btn btn-secondary">Browse Jobs</a>
+    <div class="container hero-container">
+        <div class="hero-content">
+            <h1 class="hero-title main-hero-title">Discover Your Potential with Lummy Consults</h1>
+            <p class="hero-subtitle">Expert Tutoring, Career Guidance, and a World of Learning Resources at Your Fingertips.</p>
+            <div class="hero-buttons">
+                <a href="{{ url_for('tutors.tutor_list') }}" class="btn btn-hero-primary">Find a Tutor</a>
+                <a href="{{ url_for('recruitment.job_list') }}" class="btn btn-hero-secondary">Explore Careers</a>
+            </div>
         </div>
-    </div>
-    <div class="hero-image">
-        <img src="{{ url_for('static', filename='images/lummy.jpg') }}" alt="Lummy Consults">
+        <!-- The hero-image div is removed; background will be handled by CSS on .hero-section -->
     </div>
 </section>
 
